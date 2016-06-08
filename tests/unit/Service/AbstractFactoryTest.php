@@ -7,7 +7,7 @@ class AbstractFactoryTest extends \PHPUnit_Framework_TestCase
     public function testGetOptions()
     {
         $configuration = [
-            'rabbitmq' => [
+            'rabbitmq_module' => [
                 'default-key' => [
                     'default-name' => [
                         'opt2' => 'value2',
@@ -35,7 +35,7 @@ class AbstractFactoryTest extends \PHPUnit_Framework_TestCase
         $ret = $factory->getOptions($serviceLocator, 'default-key');
 
         static::assertInstanceOf('ArrayObject', $ret);
-        static::assertEquals($configuration['rabbitmq']['default-key']['default-name'], $ret->getArrayCopy());
+        static::assertEquals($configuration['rabbitmq_module']['default-key']['default-name'], $ret->getArrayCopy());
     }
 
     /**
@@ -44,7 +44,7 @@ class AbstractFactoryTest extends \PHPUnit_Framework_TestCase
     public function testGetInvalidOptions()
     {
         $configuration = [
-            'rabbitmq' => [
+            'rabbitmq_module' => [
                 'default-key' => [
                     'default-name' => [
                         'opt2' => 'value2',
