@@ -4,7 +4,6 @@ namespace RabbitMqModule\Controller;
 
 use RabbitMqModule\Service\SetupFabricAwareInterface;
 use Zend\Console\ColorInterface;
-use Zend\Mvc\Controller\AbstractConsoleController;
 
 class SetupFabricController extends AbstractConsoleController
 {
@@ -27,6 +26,8 @@ class SetupFabricController extends AbstractConsoleController
             $response->setErrorLevel(1);
             $this->getConsole()->writeText(sprintf('Exception: %s', $e->getMessage()), ColorInterface::LIGHT_RED);
 
+            return $response;
+        } finally {
             return $response;
         }
     }

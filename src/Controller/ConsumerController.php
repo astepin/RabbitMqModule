@@ -95,6 +95,8 @@ class ConsumerController extends AbstractConsoleController
                 $this->getConsole()->colorize($description, ColorInterface::LIGHT_YELLOW)
             ));
         }
+
+        return NULL;
     }
 
     /**

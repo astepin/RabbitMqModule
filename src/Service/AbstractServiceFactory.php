@@ -2,9 +2,11 @@
 
 namespace RabbitMqModule\Service;
 
-use Zend\ServiceManager\AbstractFactoryInterface;
+use Interop\Container\ContainerInterface;
+use Interop\Container\Exception\ContainerException;
+use Zend\ServiceManager\Factory\AbstractFactoryInterface;
+use Zend\ServiceManager\Exception\ServiceNotCreatedException;
 use Zend\ServiceManager\Exception\ServiceNotFoundException;
-use Zend\ServiceManager\ServiceLocatorInterface;
 
 class AbstractServiceFactory implements AbstractFactoryInterface
 {
@@ -16,24 +18,23 @@ class AbstractServiceFactory implements AbstractFactoryInterface
     /**
      * Determine if we can create a service with name.
      *
-     * @param ServiceLocatorInterface $serviceLocator
-     * @param                         $name
+     * @param ContainerInterface $serviceLocator
      * @param                         $requestedName
      *
      * @return bool
      */
-    public function canCreateServiceWithName(ServiceLocatorInterface $serviceLocator, $name, $requestedName)
+    public function canCreate(ContainerInterface $serviceLocator, $requestedName)
     {
         return false !== $this->getFactoryMapping($serviceLocator, $requestedName);
     }
 
     /**
-     * @param \Zend\ServiceManager\ServiceLocatorInterface $serviceLocator
+     * @param ContainerInterface $serviceLocator
      * @param string                                       $name
      *
      * @return bool|array
      */
-    private function getFactoryMapping(ServiceLocatorInterface $serviceLocator, $name)
+    private function getFactoryMapping(ContainerInterface $serviceLocator, $name)
     {
         $matches = [];
 
@@ -60,21 +61,25 @@ class AbstractServiceFactory implements AbstractFactoryInterface
         ];
     }
 
-    /**
-     * Create service with name.
-     *
-     * @param ServiceLocatorInterface $serviceLocator
-     * @param                         $name
-     * @param                         $requestedName
-     *
-     * @return mixed
-     * @throws ServiceNotFoundException
-     */
-    public function createServiceWithName(ServiceLocatorInterface $serviceLocator, $name, $requestedName)
-    {
-        $mappings = $this->getFactoryMapping($serviceLocator, $requestedName);
 
-        if (!$mappings) {
+    /**
+     * Create an object
+     *
+     * @param  ContainerInterface $container
+     * @param  string $requestedName
+     * @param  null|array $options
+     * @return object
+     * @throws ServiceNotFoundException if unable to resolve the service.
+     * @throws ServiceNotCreatedException if an exception is raised when
+     *     creating a service.
+     * @throws ContainerException if any other error occurs
+     */
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = NULL)
+    {
+        $mappings = $this->getFactoryMapping($container, $requestedName);
+
+        if (!$mappings)
+        {
             throw new ServiceNotFoundException();
         }
 
@@ -82,6 +87,6 @@ class AbstractServiceFactory implements AbstractFactoryInterface
         /* @var $factory \RabbitMqModule\Service\AbstractFactory */
         $factory = new $factoryClass($mappings['serviceName']);
 
-        return $factory->createService($serviceLocator);
+        return $factory($container, $requestedName, $options);
     }
 }

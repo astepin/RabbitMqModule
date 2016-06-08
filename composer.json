@@ -1,5 +1,5 @@
 {
-  "name": "thomasvargiu/rabbitmq-module",
+  "name": "astepin/rabbitmq-module",
   "description": "Integrates php-amqplib with Zend Framework 2 and RabbitMq",
   "type": "library",
   "minimum-stability": "stable",
@@ -21,20 +21,22 @@
     "php": "^5.6 || ^7.0",
     "ext-amqp": "*",
     "php-amqplib/php-amqplib": "~2.6",
-    "zendframework/zend-stdlib": "~2.7",
-    "zendframework/zend-servicemanager": "~2.7",
-    "zendframework/zend-modulemanager": "~2.6",
+    "zendframework/zend-stdlib": "~3.0",
+    "zendframework/zend-servicemanager": "~3.0",
+    "zendframework/zend-modulemanager": "~2.7",
     "zendframework/zend-console": "~2.6",
-    "zendframework/zend-serializer": "~2.6"
+    "zendframework/zend-mvc-console": "~1.1",
+    "zendframework/zend-serializer": "~2.7",
+    "zendframework/zend-router": "~3.0"
   },
   "require-dev": {
     "phpunit/phpunit": "@stable",
     "squizlabs/php_codesniffer": "@stable",
     "phpmd/phpmd" : "@stable",
-    "fabpot/php-cs-fixer": "@stable",
+    "friendsofphp/php-cs-fixer": "@stable",
     "mockery/mockery": "@stable",
     "empi89/php-amqp-stubs": "dev-master",
-    "zendframework/zendframework": "~2.5"
+    "zendframework/zend-test": "~3.0"
   },
   "autoload": {
     "psr-4": {

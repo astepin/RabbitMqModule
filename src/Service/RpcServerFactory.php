@@ -2,9 +2,12 @@
 
 namespace RabbitMqModule\Service;
 
+use Interop\Container\ContainerInterface;
+use Interop\Container\Exception\ContainerException;
 use RabbitMqModule\ConsumerInterface;
 use RabbitMqModule\RpcServer;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\ServiceManager\Exception\ServiceNotCreatedException;
+use Zend\ServiceManager\Exception\ServiceNotFoundException;
 use RabbitMqModule\Options\RpcServer as Options;
 use InvalidArgumentException;
 
@@ -21,29 +24,14 @@ class RpcServerFactory extends AbstractFactory
     }
 
     /**
-     * Create service.
-     *
-     * @param ServiceLocatorInterface $serviceLocator
-     *
-     * @return mixed
-     */
-    public function createService(ServiceLocatorInterface $serviceLocator)
-    {
-        /* @var $options Options */
-        $options = $this->getOptions($serviceLocator, 'rpc_server');
-
-        return $this->createServer($serviceLocator, $options);
-    }
-
-    /**
-     * @param ServiceLocatorInterface $serviceLocator
+     * @param ContainerInterface $serviceLocator
      * @param Options                 $options
      *
      * @throws InvalidArgumentException
      *
      * @return RpcServer
      */
-    protected function createServer(ServiceLocatorInterface $serviceLocator, Options $options)
+    protected function createServer(ContainerInterface $serviceLocator, Options $options)
     {
         $callback = $options->getCallback();
         if (is_string($callback)) {
@@ -75,5 +63,25 @@ class RpcServerFactory extends AbstractFactory
         }
 
         return $server;
+    }
+
+    /**
+     * Create an object
+     *
+     * @param  ContainerInterface $container
+     * @param  string $requestedName
+     * @param  null|array $options
+     * @return object
+     * @throws ServiceNotFoundException if unable to resolve the service.
+     * @throws ServiceNotCreatedException if an exception is raised when
+     *     creating a service.
+     * @throws ContainerException if any other error occurs
+     */
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = NULL)
+    {
+        /* @var $options Options */
+        $options = $this->getOptions($container, 'rpc_server');
+
+        return $this->createServer($container, $options);
     }
 }

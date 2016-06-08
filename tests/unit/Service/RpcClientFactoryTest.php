@@ -2,6 +2,7 @@
 
 namespace RabbitMqModule\Service;
 
+use RabbitMqModule\RpcClient;
 use Zend\ServiceManager\ServiceManager;
 
 class RpcClientFactoryTest extends \PHPUnit_Framework_TestCase
@@ -29,7 +30,8 @@ class RpcClientFactoryTest extends \PHPUnit_Framework_TestCase
             ->getMockForAbstractClass();
         $serviceManager->setService('rabbitmq_module.connection.foo', $connection);
 
-        $service = $factory->createService($serviceManager);
+        /** @var RpcClient $service */
+        $service = $factory($serviceManager, 'temp');
 
         static::assertInstanceOf('RabbitMqModule\\RpcClient', $service);
         static::assertInstanceOf('Zend\\Serializer\\Adapter\\AdapterInterface', $service->getSerializer());

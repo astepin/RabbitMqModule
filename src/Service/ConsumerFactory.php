@@ -2,9 +2,12 @@
 
 namespace RabbitMqModule\Service;
 
+use Interop\Container\ContainerInterface;
+use Interop\Container\Exception\ContainerException;
 use RabbitMqModule\Consumer;
 use RabbitMqModule\ConsumerInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\ServiceManager\Exception\ServiceNotCreatedException;
+use Zend\ServiceManager\Exception\ServiceNotFoundException;
 use RabbitMqModule\Options\Consumer as Options;
 use InvalidArgumentException;
 
@@ -21,29 +24,14 @@ class ConsumerFactory extends AbstractFactory
     }
 
     /**
-     * Create service.
-     *
-     * @param ServiceLocatorInterface $serviceLocator
-     *
-     * @return Consumer
-     */
-    public function createService(ServiceLocatorInterface $serviceLocator)
-    {
-        /* @var $options Options */
-        $options = $this->getOptions($serviceLocator, 'consumer');
-
-        return $this->createConsumer($serviceLocator, $options);
-    }
-
-    /**
-     * @param ServiceLocatorInterface $serviceLocator
+     * @param ContainerInterface $serviceLocator
      * @param Options                 $options
      *
      * @throws InvalidArgumentException
      *
      * @return Consumer
      */
-    protected function createConsumer(ServiceLocatorInterface $serviceLocator, Options $options)
+    protected function createConsumer(ContainerInterface $serviceLocator, Options $options)
     {
         $callback = $options->getCallback();
         if (is_string($callback)) {
@@ -74,5 +62,25 @@ class ConsumerFactory extends AbstractFactory
         }
 
         return $consumer;
+    }
+
+    /**
+     * Create an object
+     *
+     * @param  ContainerInterface $container
+     * @param  string $requestedName
+     * @param  null|array $options
+     * @return object
+     * @throws ServiceNotFoundException if unable to resolve the service.
+     * @throws ServiceNotCreatedException if an exception is raised when
+     *     creating a service.
+     * @throws ContainerException if any other error occurs
+     */
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = NULL)
+    {
+        /* @var $options Options */
+        $options = $this->getOptions($container, 'consumer');
+
+        return $this->createConsumer($container, $options);
     }
 }
