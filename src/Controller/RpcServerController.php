@@ -20,7 +20,7 @@ class RpcServerController extends AbstractConsoleController
 
         $this->getConsole()->writeLine(sprintf('Starting rpc server %s', $request->getParam('name')));
 
-        $serviceName = sprintf('rabbitmq.rpc_server.%s', $request->getParam('name'));
+        $serviceName = sprintf('rabbitmq_module.rpc_server.%s', $request->getParam('name'));
 
         if (!$this->container->has($serviceName)) {
             $this->getConsole()->writeLine(

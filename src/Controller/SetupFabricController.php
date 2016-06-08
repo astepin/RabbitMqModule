@@ -4,6 +4,7 @@ namespace RabbitMqModule\Controller;
 
 use RabbitMqModule\Service\SetupFabricAwareInterface;
 use Zend\Console\ColorInterface;
+use Zend\Mvc\Controller\AbstractConsoleController;
 
 class SetupFabricController extends AbstractConsoleController
 {
@@ -45,7 +46,7 @@ class SetupFabricController extends AbstractConsoleController
         foreach ($serviceKeys as $serviceKey) {
             $keys = $this->getServiceKeys($serviceKey);
             foreach ($keys as $key) {
-                $parts[] = $this->container->get(sprintf('rabbitmq.%s.%s', $serviceKey, $key));
+                $parts[] = $this->getServiceLocator()->get(sprintf('rabbitmq_module.%s.%s', $serviceKey, $key));
             }
         }
 
@@ -55,11 +56,11 @@ class SetupFabricController extends AbstractConsoleController
     protected function getServiceKeys($service)
     {
         /** @var array $config */
-        $config = $this->container->get('Configuration');
-        if (!isset($config['rabbitmq'][$service])) {
-            throw new \RuntimeException(sprintf('No service "rabbitmq.%s" found in configuration', $service));
+        $config = $this->getServiceLocator()->get('Configuration');
+        if (!isset($config['rabbitmq_module'][$service])) {
+            throw new \RuntimeException(sprintf('No service "rabbitmq_module.%s" found in configuration', $service));
         }
 
-        return array_keys($config['rabbitmq'][$service]);
+        return array_keys($config['rabbitmq_module'][$service]);
     }
 }
