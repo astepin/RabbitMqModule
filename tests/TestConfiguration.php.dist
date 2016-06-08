@@ -2,6 +2,7 @@
 return [
     'modules'                 => [
         'Zend\Router',
+        'Zend\Mvc\Console',
         'RabbitMqModule',
     ],
     'module_listener_options' => [
