@@ -2,10 +2,13 @@
 
 namespace RabbitMqModule\Service;
 
+use Interop\Container\ContainerInterface;
+use Interop\Container\Exception\ContainerException;
 use InvalidArgumentException;
 use RabbitMqModule\Service\Connection\ConnectionFactoryInterface;
 use RuntimeException;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\ServiceManager\Exception\ServiceNotCreatedException;
+use Zend\ServiceManager\Exception\ServiceNotFoundException;
 use RabbitMqModule\Options\Connection as ConnectionOptions;
 use RabbitMqModule\Service\Connection;
 
@@ -52,23 +55,7 @@ class ConnectionFactory extends AbstractFactory
     }
 
     /**
-     * Create service.
-     *
-     * @param ServiceLocatorInterface $serviceLocator
-     *
-     * @return mixed
-     */
-    public function createService(ServiceLocatorInterface $serviceLocator)
-    {
-        /* @var $options ConnectionOptions */
-        $options = $this->getOptions($serviceLocator, 'connection');
-        $factory = $this->getFactory($serviceLocator, $options->getType());
-
-        return $factory->createConnection($options);
-    }
-
-    /**
-     * @param ServiceLocatorInterface $serviceLocator
+     * @param ContainerInterface $serviceLocator
      * @param string                  $type
      *
      * @return ConnectionFactoryInterface
@@ -76,7 +63,7 @@ class ConnectionFactory extends AbstractFactory
      * @throws InvalidArgumentException
      * @throws RuntimeException
      */
-    protected function getFactory(ServiceLocatorInterface $serviceLocator, $type)
+    protected function getFactory(ContainerInterface $serviceLocator, $type)
     {
         $map = $this->getFactoryMap();
         if (!array_key_exists($type, $map)) {
@@ -92,5 +79,26 @@ class ConnectionFactory extends AbstractFactory
         }
 
         return $factory;
+    }
+
+    /**
+     * Create an object
+     *
+     * @param  ContainerInterface $container
+     * @param  string $requestedName
+     * @param  null|array $options
+     * @return object
+     * @throws ServiceNotFoundException if unable to resolve the service.
+     * @throws ServiceNotCreatedException if an exception is raised when
+     *     creating a service.
+     * @throws ContainerException if any other error occurs
+     */
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = NULL)
+    {
+        /* @var $options ConnectionOptions */
+        $options = $this->getOptions($container, 'connection');
+        $factory = $this->getFactory($container, $options->getType());
+
+        return $factory->createConnection($options);
     }
 }

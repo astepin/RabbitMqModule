@@ -15,7 +15,7 @@ class ConsumerControllerFactoryTest extends \PHPUnit_Framework_TestCase
         $pluginManager->method('getServiceLocator')->willReturn($serviceLocator);
 
         $factory = new ConsumerControllerFactory();
-        $controller = $factory->createService($pluginManager);
+        $controller = $factory($pluginManager,'controller');
 
         static::assertInstanceOf('RabbitMqModule\Controller\ConsumerController', $controller);
     }

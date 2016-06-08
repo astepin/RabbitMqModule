@@ -2,6 +2,7 @@
 
 namespace RabbitMqModule\Service;
 
+use RabbitMqModule\RpcServer;
 use Zend\ServiceManager\ServiceManager;
 
 class RpcServerFactoryTest extends \PHPUnit_Framework_TestCase
@@ -60,7 +61,8 @@ class RpcServerFactoryTest extends \PHPUnit_Framework_TestCase
         $serviceManager->setService('rabbitmq_module.connection.foo', $connection);
         $serviceManager->setService('callback-service', $callback);
 
-        $service = $factory->createService($serviceManager);
+        /** @var RpcServer $service */
+        $service = $factory($serviceManager,'rpc');
 
         static::assertInstanceOf('RabbitMqModule\\RpcServer', $service);
         static::assertInstanceOf('RabbitMqModule\\Options\\Queue', $service->getQueueOptions());
@@ -102,6 +104,6 @@ class RpcServerFactoryTest extends \PHPUnit_Framework_TestCase
             ]
         );
 
-        $factory->createService($serviceManager);
+        $factory($serviceManager, 'tmp');
     }
 }

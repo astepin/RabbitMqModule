@@ -15,7 +15,7 @@ class SetupFabricControllerFactoryTest extends \PHPUnit_Framework_TestCase
         $pluginManager->method('getServiceLocator')->willReturn($serviceLocator);
 
         $factory = new SetupFabricControllerFactory();
-        $controller = $factory->createService($pluginManager);
+        $controller = $factory($pluginManager, 'controller');
 
         static::assertInstanceOf('RabbitMqModule\Controller\SetupFabricController', $controller);
     }

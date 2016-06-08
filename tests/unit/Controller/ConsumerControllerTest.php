@@ -16,7 +16,10 @@ class ConsumerControllerTest extends AbstractConsoleControllerTestCase
 
     public function testDispatchWithTestConsumer()
     {
-        $consumer = static::getMock('RabbitMqModule\Consumer', array('consume'), array(), '', false);
+        $consumer = $this->getMockBuilder('RabbitMqModule\Consumer')
+            ->setMethods(['consume'])
+            ->disableOriginalConstructor()
+            ->getMock();
         $consumer
             ->expects(static::once())
             ->method('consume');
@@ -45,7 +48,10 @@ class ConsumerControllerTest extends AbstractConsoleControllerTestCase
 
     public function testStopConsumerController()
     {
-        $consumer = static::getMock('RabbitMqModule\Consumer', ['forceStopConsumer', 'stopConsuming'], [], '', false);
+        $consumer = $this->getMockBuilder('RabbitMqModule\Consumer')
+            ->setMethods(['forceStopConsumer', 'stopConsuming'])
+            ->disableOriginalConstructor()
+            ->getMock();
 
         $consumer->expects(static::once())
             ->method('forceStopConsumer');
@@ -58,7 +64,7 @@ class ConsumerControllerTest extends AbstractConsoleControllerTestCase
 
         $stub = $this->getMockBuilder('RabbitMqModule\\Controller\\ConsumerController')
             ->setConstructorArgs([$container])
-            ->setMethods(array('callExit'))
+            ->setMethods(['callExit'])
             ->getMock();
 
         $stub->expects(static::once())
@@ -74,7 +80,11 @@ class ConsumerControllerTest extends AbstractConsoleControllerTestCase
 
     public function testDispatchWithoutSignals()
     {
-        $consumer = static::getMock('RabbitMqModule\Consumer', array('consume'), array(), '', false);
+        $consumer = $this->getMockBuilder('RabbitMqModule\Consumer')
+            ->setMethods(['consume'])
+            ->disableOriginalConstructor()
+            ->getMock();
+
         $consumer
             ->expects(static::once())
             ->method('consume');

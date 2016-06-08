@@ -2,6 +2,7 @@
 
 namespace RabbitMqModule\Service;
 
+use RabbitMqModule\Consumer;
 use Zend\ServiceManager\ServiceManager;
 
 class ConsumerFactoryTest extends \PHPUnit_Framework_TestCase
@@ -59,7 +60,8 @@ class ConsumerFactoryTest extends \PHPUnit_Framework_TestCase
         $serviceManager->setService('rabbitmq_module.connection.foo', $connection);
         $serviceManager->setService('callback-service', $callback);
 
-        $service = $factory->createService($serviceManager);
+        /** @var Consumer $service */
+        $service = $factory($serviceManager, 'name');
 
         static::assertInstanceOf('RabbitMqModule\\Consumer', $service);
         static::assertInstanceOf('RabbitMqModule\\Options\\Queue', $service->getQueueOptions());
@@ -100,6 +102,6 @@ class ConsumerFactoryTest extends \PHPUnit_Framework_TestCase
             ]
         );
 
-        $factory->createService($serviceManager);
+        $factory($serviceManager, 'consumer');
     }
 }
