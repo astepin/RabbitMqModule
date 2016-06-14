@@ -82,7 +82,8 @@ class ConsumerController extends AbstractConsoleController
         /** @var array $config */
         $config = $this->container->get('Configuration');
 
-        if (!array_key_exists('rabbitmq_module', $config) || !array_key_exists('consumer', $config['rabbitmq_module'])) {
+        if (!array_key_exists('rabbitmq_module', $config)
+            || !array_key_exists('consumer', $config['rabbitmq_module'])) {
             return 'No \'rabbitmq_module.consumer\' configuration key found!';
         }
 
