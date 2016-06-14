@@ -1,11 +1,11 @@
 # RabbitMqModule #
 
-[![Build Status](https://travis-ci.org/thomasvargiu/RabbitMqModule.svg?branch=master)](https://travis-ci.org/thomasvargiu/RabbitMqModule)
-[![Code Coverage](https://scrutinizer-ci.com/g/thomasvargiu/RabbitMqModule/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/thomasvargiu/RabbitMqModule/?branch=master)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/thomasvargiu/RabbitMqModule/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/thomasvargiu/RabbitMqModule/?branch=master)
-[![Dependency Status](https://www.versioneye.com/user/projects/55300c0a10e7141211000b7d/badge.svg?style=flat)](https://www.versioneye.com/user/projects/55300c0a10e7141211000b7d)
+[![Build Status](https://travis-ci.org/astepin/RabbitMqModule.svg?branch=master)](https://travis-ci.org/astepin/RabbitMqModule)
+[![Code Coverage](https://scrutinizer-ci.com/g/astepin/RabbitMqModule/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/astepin/RabbitMqModule/?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/astepin/RabbitMqModule/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/astepin/RabbitMqModule/?branch=master)
+[![Dependency Status](https://www.versioneye.com/user/projects/575fe344433d18002c19d64c/badge.svg?style=flat)](https://www.versioneye.com/user/projects/575fe344433d18002c19d64c)
 
-Integrates php-amqplib with Zend Framework 2 and RabbitMq.
+Integrates php-amqplib with Zend Framework 3 and RabbitMq.
 
 Inspired from [RabbitMqBundle](https://github.com/videlalvaro/RabbitMqBundle/) for Symfony 2
 
@@ -42,7 +42,7 @@ return [
 
 You can find all available options here:
 
-- [Connection](https://github.com/thomasvargiu/RabbitMqModule/blob/master/src/Options/Connection.php)
+- [Connection](https://github.com/astepin/RabbitMqModule/blob/master/src/Options/Connection.php)
 
 
 #### Retrieve the service ####
@@ -90,7 +90,7 @@ return [
                     'ticket' => 0,          // (default)
                     'routing_keys' => []    // (default)
                 ],
-                'auto_setup_fabric_enabled' => true // auto-setup exchanges and queues 
+                'auto_setup_fabric_enabled' => true // auto-setup exchanges and queues
             ]
         ]
     ]
@@ -101,9 +101,9 @@ return [
 
 You can find all available options here:
 
-- [Producer](https://github.com/thomasvargiu/RabbitMqModule/blob/master/src/Options/Producer.php)
-- [Exchange](https://github.com/thomasvargiu/RabbitMqModule/blob/master/src/Options/Exchange.php)
-- [Queue](https://github.com/thomasvargiu/RabbitMqModule/blob/master/src/Options/Queue.php)
+- [Producer](https://github.com/astepin/RabbitMqModule/blob/master/src/Options/Producer.php)
+- [Exchange](https://github.com/astepin/RabbitMqModule/blob/master/src/Options/Exchange.php)
+- [Queue](https://github.com/astepin/RabbitMqModule/blob/master/src/Options/Queue.php)
 
 #### Retrieve the service ####
 
@@ -159,10 +159,10 @@ return [
 
 You can find all available options here:
 
-- [Consumer](https://github.com/thomasvargiu/RabbitMqModule/blob/master/src/Options/Consumer.php)
-- [Exchange](https://github.com/thomasvargiu/RabbitMqModule/blob/master/src/Options/Exchange.php)
-- [Queue](https://github.com/thomasvargiu/RabbitMqModule/blob/master/src/Options/Queue.php)
-- [Qos](https://github.com/thomasvargiu/RabbitMqModule/blob/master/src/Options/Qos.php)
+- [Consumer](https://github.com/astepin/RabbitMqModule/blob/master/src/Options/Consumer.php)
+- [Exchange](https://github.com/astepin/RabbitMqModule/blob/master/src/Options/Exchange.php)
+- [Queue](https://github.com/astepin/RabbitMqModule/blob/master/src/Options/Queue.php)
+- [Qos](https://github.com/astepin/RabbitMqModule/blob/master/src/Options/Qos.php)
 
 #### Callback ####
 
