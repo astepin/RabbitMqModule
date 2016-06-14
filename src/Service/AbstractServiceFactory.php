@@ -82,7 +82,7 @@ class AbstractServiceFactory implements AbstractFactoryInterface
     {
         $mappings = $this->getFactoryMapping($container, $requestedName);
 
-        if(!$mappings) {
+        if (!$mappings) {
             throw new ServiceNotFoundException();
         }
 
