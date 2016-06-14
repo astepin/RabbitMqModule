@@ -80,7 +80,7 @@ class ConsumerFactory extends AbstractFactory
      *     creating a service.
      * @throws ContainerException if any other error occurs
      */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = NULL)
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
         /* @var $options Options */
         $options = $this->getOptions($container, 'consumer');

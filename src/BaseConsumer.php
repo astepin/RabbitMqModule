@@ -214,6 +214,7 @@ abstract class BaseConsumer extends BaseAmqp implements
 
     /**
      * @param AMQPMessage $message
+     * @return void
      */
     abstract public function processMessage(AMQPMessage $message);
 }

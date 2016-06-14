@@ -75,7 +75,7 @@ class ConsumerController extends AbstractConsoleController
     /**
      * List available consumers
      *
-     * @return string|NULL
+     * @return string|null
      */
     public function listAction()
     {
@@ -101,7 +101,7 @@ class ConsumerController extends AbstractConsoleController
             ));
         }
 
-        return NULL;
+        return null;
     }
 
     /**

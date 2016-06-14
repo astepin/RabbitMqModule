@@ -46,7 +46,7 @@ abstract class AbstractFactory implements FactoryInterface
     /**
      * Gets options from configuration based on name.
      *
-     * @param ContainerInterface $sl
+     * @param ContainerInterface $container
      * @param string                  $key
      * @param null|string             $name
      *
@@ -54,14 +54,14 @@ abstract class AbstractFactory implements FactoryInterface
      *
      * @throws \RuntimeException
      */
-    public function getOptions(ContainerInterface $sl, $key, $name = null)
+    public function getOptions(ContainerInterface $container, $key, $name = null)
     {
         if ($name === null) {
             $name = $this->getName();
         }
 
         /** @var array $options */
-        $options = $sl->get('Configuration');
+        $options = $container->get('Configuration');
         $options = $options[$this->configKey];
         $options = isset($options[$key][$name]) ? $options[$key][$name] : null;
 
