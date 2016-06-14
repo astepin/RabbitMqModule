@@ -38,6 +38,9 @@
     "empi89/php-amqp-stubs": "dev-master",
     "zendframework/zend-test": "~3.0"
   },
+  "suggest": {
+    "ext-pcntl": "Allows signal handling and process termination"
+  },
   "autoload": {
     "psr-4": {
       "RabbitMqModule\\": "src/"
