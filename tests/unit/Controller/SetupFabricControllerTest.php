@@ -2,9 +2,6 @@
 
 namespace RabbitMqModule\Controller;
 
-use RabbitMqModule\Controller\SetupFabricController;
-use Zend\Console\Adapter\AdapterInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\Test\PHPUnit\Controller\AbstractConsoleControllerTestCase;
 
 /**
