@@ -12,7 +12,7 @@ interface ConnectionFactoryInterface
 {
     /**
      * @param ConnectionOptions $options
-     * @return mixed
+     * @return \PhpAmqpLib\Channel\AbstractChannel
      */
     public function createConnection(ConnectionOptions $options);
 }

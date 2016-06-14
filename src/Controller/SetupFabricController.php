@@ -42,7 +42,7 @@ class SetupFabricController extends AbstractConsoleController
     }
 
     /**
-     * @return array
+     * @return SetupFabricAwareInterface[]
      */
     protected function getServiceParts()
     {

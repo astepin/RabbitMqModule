@@ -21,7 +21,7 @@ class ConsumerController extends AbstractConsoleController
     /**
      * Default action if none provided
      *
-     * @return array
+     * @return \Zend\Console\Response
      */
     public function indexAction()
     {
@@ -75,7 +75,7 @@ class ConsumerController extends AbstractConsoleController
     /**
      * List available consumers
      *
-     * @return string
+     * @return string|NULL
      */
     public function listAction()
     {

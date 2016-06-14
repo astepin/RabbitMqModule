@@ -22,7 +22,7 @@ class ConsumerControllerFactory implements FactoryInterface
      * @param  ContainerInterface $container
      * @param  string $requestedName
      * @param  null|array $options
-     * @return object
+     * @return \RabbitMqModule\Controller\ConsumerController
      * @throws ServiceNotFoundException if unable to resolve the service.
      * @throws ServiceNotCreatedException if an exception is raised when
      *     creating a service.
@@ -30,7 +30,6 @@ class ConsumerControllerFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = NULL)
     {
-        /** @var $serviceLocator \Zend\ServiceManager\AbstractPluginManager */
         return new Controller($container);
     }
 }

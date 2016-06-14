@@ -91,7 +91,7 @@ class ConnectionFactory extends AbstractFactory
      * @param  ContainerInterface $container
      * @param  string $requestedName
      * @param  null|array $options
-     * @return object
+     * @return \PhpAmqpLib\Channel\AbstractChannel
      * @throws ServiceNotFoundException if unable to resolve the service.
      * @throws ServiceNotCreatedException if an exception is raised when
      *     creating a service.

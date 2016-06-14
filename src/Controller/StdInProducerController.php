@@ -14,7 +14,7 @@ class StdInProducerController extends AbstractConsoleController
     /**
      * Default action if none provided
      *
-     * @return array
+     * @return \Zend\Console\Response
      */
     public function indexAction()
     {
