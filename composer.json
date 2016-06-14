@@ -1,10 +1,10 @@
 {
   "name": "astepin/rabbitmq-module",
-  "description": "Integrates php-amqplib with Zend Framework 2 and RabbitMq",
+  "description": "Integrates php-amqplib with Zend Framework 3 and RabbitMq",
   "type": "library",
   "minimum-stability": "stable",
   "license": "MIT",
-  "homepage": "https://github.com/thomasvargiu/RabbitMqModule",
+  "homepage": "https://github.com/astepin/RabbitMqModule",
   "keywords": [
     "zf2",
     "zend framework",

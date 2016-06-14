@@ -8,6 +8,10 @@ use RabbitMqModule\Options\Exchange as ExchangeOptions;
 use RabbitMqModule\Options\Queue as QueueOptions;
 use RabbitMqModule\Service\SetupFabricAwareInterface;
 
+/**
+ * Class BaseAmqp
+ * @package RabbitMqModule
+ */
 abstract class BaseAmqp implements SetupFabricAwareInterface
 {
     /**

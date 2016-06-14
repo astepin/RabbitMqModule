@@ -2,6 +2,10 @@
 
 namespace RabbitMqModule\Service;
 
+/**
+ * Interface SetupFabricAwareInterface
+ * @package RabbitMqModule\Service
+ */
 interface SetupFabricAwareInterface
 {
     /**

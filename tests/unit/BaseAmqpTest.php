@@ -2,17 +2,24 @@
 
 namespace RabbitMqModule;
 
+use PhpAmqpLib\Channel\AMQPChannel;
+use PhpAmqpLib\Connection\AbstractConnection;
+
+/**
+ * Class BaseAmqpTest
+ * @package RabbitMqModule
+ */
 class BaseAmqpTest extends \PHPUnit_Framework_TestCase
 {
     public function testConstructor()
     {
-        $connection = static::getMockBuilder('PhpAmqpLib\\Connection\\AbstractConnection')
+        $connection = static::getMockBuilder(AbstractConnection::class)
             ->disableOriginalConstructor()
             ->getMock();
-        $channel = static::getMockBuilder('PhpAmqpLib\\Channel\\AMQPChannel')
+        $channel = static::getMockBuilder(AMQPChannel::class)
             ->disableOriginalConstructor()
             ->getMock();
-        $baseAmqp = static::getMockBuilder('RabbitMqModule\\BaseAmqp')
+        $baseAmqp = static::getMockBuilder(BaseAmqp::class)
             ->setConstructorArgs([$connection])
             ->setMethods(['__destruct'])
             ->getMock();
@@ -21,33 +28,39 @@ class BaseAmqpTest extends \PHPUnit_Framework_TestCase
 
         $connection->expects(static::once())->method('channel')->willReturn($channel);
 
-        /** @var \RabbitMqModule\BaseAmqp $baseAmqp */
+        /** @var BaseAmqp $baseAmqp */
         static::assertEquals($channel, $baseAmqp->getChannel());
     }
 
     public function testSetChannel()
     {
-        $connection = static::getMockBuilder('PhpAmqpLib\\Connection\\AbstractConnection')
+        $connection = static::getMockBuilder(AbstractConnection::class)
             ->disableOriginalConstructor()
             ->getMock();
-        $channel = static::getMockBuilder('PhpAmqpLib\\Channel\\AMQPChannel')
+        /** @var AMQPChannel $channel */
+        $channel = static::getMockBuilder(AMQPChannel::class)
             ->disableOriginalConstructor()
             ->getMock();
-        $baseAmqp = static::getMockBuilder('RabbitMqModule\\BaseAmqp')
+        $baseAmqp = static::getMockBuilder(BaseAmqp::class)
             ->setConstructorArgs([$connection])
             ->setMethods(['__destruct'])
             ->getMock();
 
         $baseAmqp->method('__destruct');
 
-        /* @var \RabbitMqModule\BaseAmqp $baseAmqp */
+        /* @var BaseAmqp $baseAmqp */
         $baseAmqp->setChannel($channel);
         static::assertEquals($channel, $baseAmqp->getChannel());
     }
 
+    /**
+     *
+     * @param $name
+     * @return \ReflectionMethod
+     */
     protected static function getMethod($name)
     {
-        $class = new \ReflectionClass('RabbitMqModule\\BaseAmqp');
+        $class = new \ReflectionClass(BaseAmqp::class);
         $method = $class->getMethod($name);
         $method->setAccessible(true);
 
@@ -56,13 +69,14 @@ class BaseAmqpTest extends \PHPUnit_Framework_TestCase
 
     public function testDestruct()
     {
-        $connection = static::getMockBuilder('PhpAmqpLib\\Connection\\AbstractConnection')
+        $connection = static::getMockBuilder(AbstractConnection::class)
             ->disableOriginalConstructor()
             ->getMock();
-        $channel = static::getMockBuilder('PhpAmqpLib\\Channel\\AMQPChannel')
+        /** @var AMQPChannel|\PHPUnit_Framework_MockObject_MockObject $channel */
+        $channel = static::getMockBuilder(AMQPChannel::class)
             ->disableOriginalConstructor()
             ->getMock();
-        $baseAmqp = static::getMockBuilder('RabbitMqModule\\BaseAmqp')
+        $baseAmqp = static::getMockBuilder(BaseAmqp::class)
             ->setConstructorArgs([$connection])
             ->setMethods(null)
             ->getMock();
@@ -72,17 +86,17 @@ class BaseAmqpTest extends \PHPUnit_Framework_TestCase
 
         $channel->expects(static::once())->method('close');
 
-        /* @var \RabbitMqModule\BaseAmqp $baseAmqp */
+        /* @var BaseAmqp $baseAmqp */
         $baseAmqp->setChannel($channel);
         $baseAmqp->__destruct();
     }
 
     public function testReconnect()
     {
-        $connection = static::getMockBuilder('PhpAmqpLib\\Connection\\AbstractConnection')
+        $connection = static::getMockBuilder(AbstractConnection::class)
             ->disableOriginalConstructor()
             ->getMock();
-        $baseAmqp = static::getMockBuilder('RabbitMqModule\\BaseAmqp')
+        $baseAmqp = static::getMockBuilder(BaseAmqp::class)
             ->setConstructorArgs([$connection])
             ->setMethods(['__destruct'])
             ->getMock();
@@ -90,16 +104,16 @@ class BaseAmqpTest extends \PHPUnit_Framework_TestCase
         $connection->expects(static::once())->method('isConnected')->willReturn(true);
         $connection->expects(static::once())->method('reconnect');
 
-        /** @var \RabbitMqModule\BaseAmqp $baseAmqp */
+        /** @var BaseAmqp $baseAmqp */
         static::assertEquals($baseAmqp, $baseAmqp->reconnect());
     }
 
     public function testReconnectWhenConnected()
     {
-        $connection = static::getMockBuilder('PhpAmqpLib\\Connection\\AbstractConnection')
+        $connection = static::getMockBuilder(AbstractConnection::class)
             ->disableOriginalConstructor()
             ->getMock();
-        $baseAmqp = static::getMockBuilder('RabbitMqModule\\BaseAmqp')
+        $baseAmqp = static::getMockBuilder(BaseAmqp::class)
             ->setConstructorArgs([$connection])
             ->setMethods(['__destruct'])
             ->getMock();
@@ -107,7 +121,7 @@ class BaseAmqpTest extends \PHPUnit_Framework_TestCase
         $connection->expects(static::once())->method('isConnected')->willReturn(false);
         $connection->expects(static::never())->method('reconnect');
 
-        /** @var \RabbitMqModule\BaseAmqp $baseAmqp */
+        /** @var BaseAmqp $baseAmqp */
         static::assertEquals($baseAmqp, $baseAmqp->reconnect());
     }
 }

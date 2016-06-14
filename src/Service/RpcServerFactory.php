@@ -11,6 +11,10 @@ use Zend\ServiceManager\Exception\ServiceNotFoundException;
 use RabbitMqModule\Options\RpcServer as Options;
 use InvalidArgumentException;
 
+/**
+ * Class RpcServerFactory
+ * @package RabbitMqModule\Service
+ */
 class RpcServerFactory extends AbstractFactory
 {
     /**

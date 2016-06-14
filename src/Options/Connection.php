@@ -4,6 +4,10 @@ namespace RabbitMqModule\Options;
 
 use Zend\Stdlib\AbstractOptions;
 
+/**
+ * Class Connection
+ * @package RabbitMqModule\Options
+ */
 class Connection extends AbstractOptions
 {
     /**

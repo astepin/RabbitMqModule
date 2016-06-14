@@ -6,6 +6,10 @@ use Interop\Container\ContainerInterface;
 use RabbitMqModule\Service\AbstractFactory as ModuleAbstractFactory;
 use Zend\Stdlib\ArrayObject;
 
+/**
+ * Class AbstractFactoryTest
+ * @package RabbitMqModule\Service
+ */
 class AbstractFactoryTest extends \PHPUnit_Framework_TestCase
 {
     public function testGetOptions()
@@ -23,6 +27,7 @@ class AbstractFactoryTest extends \PHPUnit_Framework_TestCase
             ],
         ];
 
+        /** @var ContainerInterface|\PHPUnit_Framework_MockObject_MockObject $serviceLocator */
         $serviceLocator = static::getMockBuilder(ContainerInterface::class)
             ->setMethods(['get', 'has'])
             ->getMock();
@@ -61,6 +66,7 @@ class AbstractFactoryTest extends \PHPUnit_Framework_TestCase
             ],
         ];
 
+        /** @var ContainerInterface|\PHPUnit_Framework_MockObject_MockObject $serviceLocator */
         $serviceLocator = static::getMockBuilder(ContainerInterface::class)
             ->setMethods(['get', 'has'])
             ->getMock();

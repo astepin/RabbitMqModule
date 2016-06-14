@@ -2,6 +2,10 @@
 
 namespace RabbitMqModule\Options;
 
+/**
+ * Class RpcServerTest
+ * @package RabbitMqModule\Options
+ */
 class RpcServerTest extends \PHPUnit_Framework_TestCase
 {
     public function testSetSerializer()

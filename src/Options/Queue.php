@@ -4,6 +4,10 @@ namespace RabbitMqModule\Options;
 
 use Zend\Stdlib\AbstractOptions;
 
+/**
+ * Class Queue
+ * @package RabbitMqModule\Options
+ */
 class Queue extends AbstractOptions
 {
     /**

@@ -2,6 +2,10 @@
 
 namespace RabbitMqModule\Options;
 
+/**
+ * Class QueueTest
+ * @package RabbitMqModule\Options
+ */
 class QueueTest extends \PHPUnit_Framework_TestCase
 {
     public function testOptions()

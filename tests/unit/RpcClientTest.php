@@ -2,9 +2,15 @@
 
 namespace RabbitMqModule;
 
+use PhpAmqpLib\Channel\AMQPChannel;
+use PhpAmqpLib\Connection\AbstractConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 use Zend\Serializer\Serializer;
 
+/**
+ * Class RpcClientTest
+ * @package RabbitMqModule
+ */
 class RpcClientTest extends \PHPUnit_Framework_TestCase
 {
     public function testAddRequestAndGetReplies()
@@ -17,10 +23,10 @@ class RpcClientTest extends \PHPUnit_Framework_TestCase
 
         $serializer = Serializer::factory('json');
 
-        $connection = static::getMockBuilder('PhpAmqpLib\\Connection\\AbstractConnection')
+        $connection = static::getMockBuilder(AbstractConnection::class)
             ->disableOriginalConstructor()
             ->getMockForAbstractClass();
-        $channel = static::getMockBuilder('PhpAmqpLib\\Channel\\AMQPChannel')
+        $channel = static::getMockBuilder(AMQPChannel::class)
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -43,7 +49,7 @@ class RpcClientTest extends \PHPUnit_Framework_TestCase
                 $routingKey
             );
 
-        /* @var \PhpAmqpLib\Connection\AbstractConnection $connection */
+        /* @var AbstractConnection $connection */
         $rpcClient = new RpcClient($connection, $channel);
         $rpcClient->setSerializer($serializer);
 

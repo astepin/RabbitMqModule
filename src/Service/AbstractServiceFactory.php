@@ -8,6 +8,10 @@ use Zend\ServiceManager\Factory\AbstractFactoryInterface;
 use Zend\ServiceManager\Exception\ServiceNotCreatedException;
 use Zend\ServiceManager\Exception\ServiceNotFoundException;
 
+/**
+ * Class AbstractServiceFactory
+ * @package RabbitMqModule\Service
+ */
 class AbstractServiceFactory implements AbstractFactoryInterface
 {
     /**

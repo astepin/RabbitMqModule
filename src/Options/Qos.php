@@ -4,6 +4,10 @@ namespace RabbitMqModule\Options;
 
 use Zend\Stdlib\AbstractOptions;
 
+/**
+ * Class Qos
+ * @package RabbitMqModule\Options
+ */
 class Qos extends AbstractOptions
 {
     /**

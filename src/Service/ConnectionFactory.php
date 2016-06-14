@@ -12,6 +12,10 @@ use Zend\ServiceManager\Exception\ServiceNotFoundException;
 use RabbitMqModule\Options\Connection as ConnectionOptions;
 use RabbitMqModule\Service\Connection;
 
+/**
+ * Class ConnectionFactory
+ * @package RabbitMqModule\Service
+ */
 class ConnectionFactory extends AbstractFactory
 {
     /**

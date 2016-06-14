@@ -2,6 +2,10 @@
 
 namespace RabbitMqModule\Options;
 
+/**
+ * Class ExchangeBindTest
+ * @package RabbitMqModule\Options
+ */
 class ExchangeBindTest extends \PHPUnit_Framework_TestCase
 {
     public function testOptions()

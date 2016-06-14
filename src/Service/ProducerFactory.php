@@ -11,6 +11,10 @@ use Zend\ServiceManager\Exception\ServiceNotFoundException;
 use RabbitMqModule\Options\Producer as Options;
 use InvalidArgumentException;
 
+/**
+ * Class ProducerFactory
+ * @package RabbitMqModule\Service
+ */
 class ProducerFactory extends AbstractFactory
 {
     /**

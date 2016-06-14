@@ -2,6 +2,10 @@
 
 namespace RabbitMqModule;
 
+/**
+ * Interface ProducerInterface
+ * @package RabbitMqModule
+ */
 interface ProducerInterface
 {
     /**

@@ -11,6 +11,11 @@ use Zend\Console\ColorInterface;
  */
 class StdInProducerController extends AbstractConsoleController
 {
+    /**
+     * Default action if none provided
+     *
+     * @return array
+     */
     public function indexAction()
     {
         /** @var \Zend\Console\Request $request */

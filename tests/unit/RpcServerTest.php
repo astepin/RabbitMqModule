@@ -2,22 +2,29 @@
 
 namespace RabbitMqModule;
 
+use PhpAmqpLib\Channel\AMQPChannel;
+use PhpAmqpLib\Connection\AbstractConnection;
+use PhpAmqpLib\Message\AMQPMessage;
 use Zend\Serializer\Serializer;
 
+/**
+ * Class RpcServerTest
+ * @package RabbitMqModule
+ */
 class RpcServerTest extends \PHPUnit_Framework_TestCase
 {
     public function testProcessMessage()
     {
         $response = 'ciao';
 
-        $connection = static::getMockBuilder('PhpAmqpLib\\Connection\\AbstractConnection')
+        $connection = static::getMockBuilder(AbstractConnection::class)
             ->disableOriginalConstructor()
             ->getMockForAbstractClass();
-        $channel = static::getMockBuilder('PhpAmqpLib\\Channel\\AMQPChannel')
+        $channel = static::getMockBuilder(AMQPChannel::class)
             ->disableOriginalConstructor()
             ->getMock();
 
-        $message = new \PhpAmqpLib\Message\AMQPMessage('request', [
+        $message = new AMQPMessage('request', [
             'reply_to' => 'foo',
             'correlation_id' => 'bar',
         ]);
@@ -27,7 +34,7 @@ class RpcServerTest extends \PHPUnit_Framework_TestCase
             'delivery_tag' => 'foo',
         ];
 
-        /* @var \PhpAmqpLib\Connection\AbstractConnection $connection */
+        /* @var AbstractConnection $connection */
         $rpcServer = new RpcServer($connection, $channel);
         $rpcServer->setCallback(function () use ($response) {
             return $response;
@@ -36,7 +43,7 @@ class RpcServerTest extends \PHPUnit_Framework_TestCase
         $channel->expects(static::once())->method('basic_publish')
             ->with(
                 static::callback(function ($a) use ($response) {
-                    return $a instanceof \PhpAmqpLib\Message\AMQPMessage
+                    return $a instanceof AMQPMessage
                         && $a->body === $response
                         && $a->get('correlation_id') === 'bar'
                         && $a->get('content_type') === 'text/plain';
@@ -52,14 +59,14 @@ class RpcServerTest extends \PHPUnit_Framework_TestCase
     {
         $response = ['response' => 'ciao'];
 
-        $connection = static::getMockBuilder('PhpAmqpLib\\Connection\\AbstractConnection')
+        $connection = static::getMockBuilder(AbstractConnection::class)
             ->disableOriginalConstructor()
             ->getMockForAbstractClass();
-        $channel = static::getMockBuilder('PhpAmqpLib\\Channel\\AMQPChannel')
+        $channel = static::getMockBuilder(AMQPChannel::class)
             ->disableOriginalConstructor()
             ->getMock();
 
-        $message = new \PhpAmqpLib\Message\AMQPMessage('request', [
+        $message = new AMQPMessage('request', [
             'reply_to' => 'foo',
             'correlation_id' => 'bar',
         ]);
@@ -71,7 +78,7 @@ class RpcServerTest extends \PHPUnit_Framework_TestCase
 
         $serializer = Serializer::factory('json');
 
-        /* @var \PhpAmqpLib\Connection\AbstractConnection $connection */
+        /* @var AbstractConnection $connection */
         $rpcServer = new RpcServer($connection, $channel);
         $rpcServer->setSerializer($serializer);
         $rpcServer->setCallback(function () use ($response) {
@@ -81,7 +88,7 @@ class RpcServerTest extends \PHPUnit_Framework_TestCase
         $channel->expects(static::once())->method('basic_publish')
             ->with(
                 static::callback(function ($a) use ($response) {
-                    return $a instanceof \PhpAmqpLib\Message\AMQPMessage
+                    return $a instanceof AMQPMessage
                     && $a->body === '{"response":"ciao"}'
                     && $a->get('correlation_id') === 'bar'
                     && $a->get('content_type') === 'text/plain';

@@ -2,9 +2,14 @@
 
 namespace RabbitMqModule\Service;
 
+use PhpAmqpLib\Connection\AbstractConnection;
 use RabbitMqModule\Producer;
 use Zend\ServiceManager\ServiceManager;
 
+/**
+ * Class ProducerFactoryTest
+ * @package RabbitMqModule\Service
+ */
 class ProducerFactoryTest extends \PHPUnit_Framework_TestCase
 {
     public function testCreateService()
@@ -31,7 +36,7 @@ class ProducerFactoryTest extends \PHPUnit_Framework_TestCase
             ]
         );
 
-        $connection = static::getMockBuilder('PhpAmqpLib\\Connection\\AbstractConnection')
+        $connection = static::getMockBuilder(AbstractConnection::class)
             ->disableOriginalConstructor()
             ->getMockForAbstractClass();
         $serviceManager->setService(
@@ -42,7 +47,7 @@ class ProducerFactoryTest extends \PHPUnit_Framework_TestCase
         /** @var Producer $service */
         $service = $factory($serviceManager, 'producer');
 
-        static::assertInstanceOf('RabbitMqModule\\Producer', $service);
+        static::assertInstanceOf(Producer::class, $service);
         static::assertSame($connection, $service->getConnection());
         static::assertEquals('exchange-name', $service->getExchangeOptions()->getName());
         static::assertEquals('queue-name', $service->getQueueOptions()->getName());

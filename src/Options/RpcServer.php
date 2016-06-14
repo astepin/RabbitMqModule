@@ -5,6 +5,10 @@ namespace RabbitMqModule\Options;
 use Zend\Serializer\Serializer;
 use Zend\Serializer\Adapter\AdapterInterface as SerializerInterface;
 
+/**
+ * Class RpcServer
+ * @package RabbitMqModule\Options
+ */
 class RpcServer extends Consumer
 {
     /**

@@ -5,8 +5,17 @@ namespace RabbitMqModule\Controller;
 use RabbitMqModule\Service\SetupFabricAwareInterface;
 use Zend\Console\ColorInterface;
 
+/**
+ * Class SetupFabricController
+ * @package RabbitMqModule\Controller
+ */
 class SetupFabricController extends AbstractConsoleController
 {
+    /**
+     * Default action if none provided
+     *
+     * @return array
+     */
     public function indexAction()
     {
         /** @var \Zend\Console\Response $response */
@@ -54,6 +63,11 @@ class SetupFabricController extends AbstractConsoleController
         return $parts;
     }
 
+    /**
+     *
+     * @param $service
+     * @return array
+     */
     protected function getServiceKeys($service)
     {
         /** @var array $config */

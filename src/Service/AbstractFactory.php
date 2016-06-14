@@ -6,6 +6,10 @@ use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\Factory\FactoryInterface;
 use RuntimeException;
 
+/**
+ * Class AbstractFactory
+ * @package RabbitMqModule\Service
+ */
 abstract class AbstractFactory implements FactoryInterface
 {
     /**

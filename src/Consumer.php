@@ -4,6 +4,10 @@ namespace RabbitMqModule;
 
 use PhpAmqpLib\Message\AMQPMessage;
 
+/**
+ * Class Consumer
+ * @package RabbitMqModule
+ */
 class Consumer extends BaseConsumer
 {
     /**
@@ -43,6 +47,11 @@ class Consumer extends BaseConsumer
         $this->getEventManager()->trigger(__FUNCTION__.'.post', $this, compact('message'));
     }
 
+    /**
+     *
+     * @param AMQPMessage $msg
+     * @param $processFlag
+     */
     protected function handleProcessMessage(AMQPMessage $msg, $processFlag)
     {
         $channel = $msg->delivery_info['channel'];

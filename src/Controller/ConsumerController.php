@@ -18,6 +18,11 @@ class ConsumerController extends AbstractConsoleController
      */
     protected $consumer;
 
+    /**
+     * Default action if none provided
+     *
+     * @return array
+     */
     public function indexAction()
     {
         /** @var \Zend\Console\Request $request */

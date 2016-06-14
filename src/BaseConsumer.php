@@ -6,6 +6,10 @@ use PhpAmqpLib\Message\AMQPMessage;
 use Zend\EventManager\EventManagerAwareInterface;
 use Zend\EventManager\EventManagerAwareTrait;
 
+/**
+ * Class BaseConsumer
+ * @package RabbitMqModule
+ */
 abstract class BaseConsumer extends BaseAmqp implements
     EventManagerAwareInterface
 {
@@ -164,6 +168,9 @@ abstract class BaseConsumer extends BaseAmqp implements
         return $this;
     }
 
+    /**
+     * @return $this
+     */
     protected function maybeStopConsumer()
     {
         // @codeCoverageIgnoreStart
@@ -185,6 +192,9 @@ abstract class BaseConsumer extends BaseAmqp implements
         return $this;
     }
 
+    /**
+     * @return $this
+     */
     public function forceStopConsumer()
     {
         $this->forceStop = true;

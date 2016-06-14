@@ -2,6 +2,10 @@
 
 namespace RabbitMqModule\Options;
 
+/**
+ * Class ConsumerTest
+ * @package RabbitMqModule\Options
+ */
 class ConsumerTest extends \PHPUnit_Framework_TestCase
 {
     public function testOptions()

@@ -8,6 +8,10 @@ use Zend\ServiceManager\Exception\ServiceNotCreatedException;
 use Zend\ServiceManager\Exception\ServiceNotFoundException;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
+/**
+ * Class ServiceFactoryMock
+ * @package RabbitMqModule\Service
+ */
 class ServiceFactoryMock implements FactoryInterface
 {
      /**

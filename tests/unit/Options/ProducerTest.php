@@ -2,6 +2,10 @@
 
 namespace RabbitMqModule\Options;
 
+/**
+ * Class ProducerTest
+ * @package RabbitMqModule\Options
+ */
 class ProducerTest extends \PHPUnit_Framework_TestCase
 {
     public function testOptions()

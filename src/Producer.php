@@ -4,6 +4,10 @@ namespace RabbitMqModule;
 
 use PhpAmqpLib\Message\AMQPMessage;
 
+/**
+ * Class Producer
+ * @package RabbitMqModule
+ */
 class Producer extends BaseAmqp implements ProducerInterface
 {
     /**

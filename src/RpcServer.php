@@ -5,6 +5,10 @@ namespace RabbitMqModule;
 use PhpAmqpLib\Message\AMQPMessage;
 use Zend\Serializer\Adapter\AdapterInterface as SerializerInterface;
 
+/**
+ * Class RpcServer
+ * @package RabbitMqModule
+ */
 class RpcServer extends Consumer
 {
     /**

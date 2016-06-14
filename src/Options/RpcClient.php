@@ -6,6 +6,10 @@ use Zend\Serializer\Serializer;
 use Zend\Stdlib\AbstractOptions;
 use Zend\Serializer\Adapter\AdapterInterface as SerializerInterface;
 
+/**
+ * Class RpcClient
+ * @package RabbitMqModule\Options
+ */
 class RpcClient extends AbstractOptions
 {
     /**

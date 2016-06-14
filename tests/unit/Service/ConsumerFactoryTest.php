@@ -2,9 +2,18 @@
 
 namespace RabbitMqModule\Service;
 
+use PhpAmqpLib\Channel\AMQPChannel;
+use PhpAmqpLib\Connection\AbstractConnection;
 use RabbitMqModule\Consumer;
+use RabbitMqModule\ConsumerInterface;
+use RabbitMqModule\Options\Exchange;
+use RabbitMqModule\Options\Queue;
 use Zend\ServiceManager\ServiceManager;
 
+/**
+ * Class ConsumerFactoryTest
+ * @package RabbitMqModule\Service
+ */
 class ConsumerFactoryTest extends \PHPUnit_Framework_TestCase
 {
     public function testCreateService()
@@ -36,14 +45,14 @@ class ConsumerFactoryTest extends \PHPUnit_Framework_TestCase
             ]
         );
 
-        $connection = static::getMockBuilder('PhpAmqpLib\\Connection\\AbstractConnection')
+        $connection = static::getMockBuilder(AbstractConnection::class)
             ->disableOriginalConstructor()
             ->setMethods(['channel'])
             ->getMockForAbstractClass();
-        $channel = static::getMockBuilder('PhpAmqpLib\\Channel\\AMQPChannel')
+        $channel = static::getMockBuilder(AMQPChannel::class)
             ->disableOriginalConstructor()
             ->getMock();
-        $callback = static::getMockBuilder('RabbitMqModule\\ConsumerInterface')
+        $callback = static::getMockBuilder(ConsumerInterface::class)
             ->disableOriginalConstructor()
             ->setMethods(['execute'])
             ->getMockForAbstractClass();
@@ -63,9 +72,9 @@ class ConsumerFactoryTest extends \PHPUnit_Framework_TestCase
         /** @var Consumer $service */
         $service = $factory($serviceManager, 'name');
 
-        static::assertInstanceOf('RabbitMqModule\\Consumer', $service);
-        static::assertInstanceOf('RabbitMqModule\\Options\\Queue', $service->getQueueOptions());
-        static::assertInstanceOf('RabbitMqModule\\Options\\Exchange', $service->getExchangeOptions());
+        static::assertInstanceOf(Consumer::class, $service);
+        static::assertInstanceOf(Queue::class, $service->getQueueOptions());
+        static::assertInstanceOf(Exchange::class, $service->getExchangeOptions());
         static::assertNotEmpty($service->getConsumerTag());
         static::assertTrue(is_callable($service->getCallback()));
         static::assertEquals(5, $service->getIdleTimeout());

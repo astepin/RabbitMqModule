@@ -4,6 +4,10 @@ namespace RabbitMqModule\Controller;
 
 use Zend\Test\PHPUnit\Controller\AbstractConsoleControllerTestCase;
 
+/**
+ * Class ConsumerControllerTest
+ * @package RabbitMqModule\Controller
+ */
 class ConsumerControllerTest extends AbstractConsoleControllerTestCase
 {
 

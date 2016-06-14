@@ -2,9 +2,14 @@
 
 namespace RabbitMqModule\Service;
 
+use PhpAmqpLib\Connection\AbstractConnection;
 use PHPUnit_Framework_TestCase;
 use Zend\ServiceManager\ServiceManager;
 
+/**
+ * Class AbstractServiceFactoryTest
+ * @package RabbitMqModule\Service
+ */
 class AbstractServiceFactoryTest extends PHPUnit_Framework_TestCase
 {
     /**
@@ -37,7 +42,7 @@ class AbstractServiceFactoryTest extends PHPUnit_Framework_TestCase
                     ],
                     'factories' => [
                         'foo' => 'fooFactory',
-                        'producer' => 'RabbitMqModule\\Service\\ServiceFactoryMock',
+                        'producer' => ServiceFactoryMock::class,
                     ],
                 ],
             ]
@@ -54,7 +59,7 @@ class AbstractServiceFactoryTest extends PHPUnit_Framework_TestCase
 
     public function testCreateServiceWithName()
     {
-        $connection = static::getMockBuilder('PhpAmqpLib\\Connection\\AbstractConnection')
+        $connection = static::getMockBuilder(AbstractConnection::class)
             ->disableOriginalConstructor()
             ->getMockForAbstractClass();
         $sm = $this->serviceManager;

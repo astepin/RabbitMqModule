@@ -4,6 +4,10 @@ namespace RabbitMqModule\Controller;
 
 use Zend\Test\PHPUnit\Controller\AbstractConsoleControllerTestCase;
 
+/**
+ * Class RpcServerControllerTest
+ * @package RabbitMqModule\Controller
+ */
 class RpcServerControllerTest extends AbstractConsoleControllerTestCase
 {
     protected function setUp()

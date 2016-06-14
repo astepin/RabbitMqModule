@@ -4,6 +4,10 @@ namespace RabbitMqModule\Options;
 
 use Zend\Stdlib\AbstractOptions;
 
+/**
+ * Class Producer
+ * @package RabbitMqModule\Options
+ */
 class Producer extends AbstractOptions
 {
     /**

@@ -2,6 +2,10 @@
 
 namespace RabbitMqModule\Controller\Factory;
 
+/**
+ * Class ConsumerControllerFactoryTest
+ * @package RabbitMqModule\Controller\Factory
+ */
 class ConsumerControllerFactoryTest extends \PHPUnit_Framework_TestCase
 {
     public function testFactory()

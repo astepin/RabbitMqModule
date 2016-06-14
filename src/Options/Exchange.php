@@ -4,6 +4,10 @@ namespace RabbitMqModule\Options;
 
 use Zend\Stdlib\AbstractOptions;
 
+/**
+ * Class Exchange
+ * @package RabbitMqModule\Options
+ */
 class Exchange extends AbstractOptions
 {
     /**

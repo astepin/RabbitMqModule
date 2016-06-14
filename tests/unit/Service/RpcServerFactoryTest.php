@@ -2,9 +2,16 @@
 
 namespace RabbitMqModule\Service;
 
+use PhpAmqpLib\Channel\AMQPChannel;
+use PhpAmqpLib\Connection\AbstractConnection;
+use RabbitMqModule\ConsumerInterface;
 use RabbitMqModule\RpcServer;
 use Zend\ServiceManager\ServiceManager;
 
+/**
+ * Class RpcServerFactoryTest
+ * @package RabbitMqModule\Service
+ */
 class RpcServerFactoryTest extends \PHPUnit_Framework_TestCase
 {
     public function testCreateService()
@@ -37,14 +44,14 @@ class RpcServerFactoryTest extends \PHPUnit_Framework_TestCase
             ]
         );
 
-        $connection = static::getMockBuilder('PhpAmqpLib\\Connection\\AbstractConnection')
+        $connection = static::getMockBuilder(AbstractConnection::class)
             ->disableOriginalConstructor()
             ->setMethods(['channel'])
             ->getMockForAbstractClass();
-        $channel = static::getMockBuilder('PhpAmqpLib\\Channel\\AMQPChannel')
+        $channel = static::getMockBuilder(AMQPChannel::class)
             ->disableOriginalConstructor()
             ->getMock();
-        $callback = static::getMockBuilder('RabbitMqModule\\ConsumerInterface')
+        $callback = static::getMockBuilder(ConsumerInterface::class)
             ->disableOriginalConstructor()
             ->setMethods(['execute'])
             ->getMockForAbstractClass();

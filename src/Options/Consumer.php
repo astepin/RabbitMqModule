@@ -5,6 +5,10 @@ namespace RabbitMqModule\Options;
 use InvalidArgumentException;
 use Zend\Stdlib\AbstractOptions;
 
+/**
+ * Class Consumer
+ * @package RabbitMqModule\Options
+ */
 class Consumer extends AbstractOptions
 {
     /**
