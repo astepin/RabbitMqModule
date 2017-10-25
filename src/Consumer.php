@@ -41,7 +41,7 @@ class Consumer extends BaseConsumer
     {
         $this->getEventManager()->trigger(__FUNCTION__.'.pre', $this, compact('message'));
 
-        $processFlag = call_user_func($this->getCallback(), $msg);
+        $processFlag = call_user_func($this->getCallback(), $msg, $this);
         $this->handleProcessMessage($msg, $processFlag);
 
         $this->getEventManager()->trigger(__FUNCTION__.'.post', $this, compact('message'));

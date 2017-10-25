@@ -187,9 +187,11 @@ class ConsumerTest extends \PHPUnit_Framework_TestCase
 
         /* @var AbstractConnection $connection */
         $consumer = new Consumer($connection, $channel);
-        $consumer->setCallback(function () use ($response) {
+        $consumer->setCallback(\Closure::fromCallable(function ($p1, $p2) use ($response, $message, $consumer) {
+            $this->assertSame($message, $p1);
+            $this->assertSame($consumer, $p2);
             return $response;
-        });
+        })->bindTo($this));
 
         $expect = $channel->expects(static::once())
             ->method($method);
