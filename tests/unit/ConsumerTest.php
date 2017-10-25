@@ -13,7 +13,7 @@ use RabbitMqModule\Options\Exchange as ExchangeOptions;
  * Class ConsumerTest
  * @package RabbitMqModule
  */
-class ConsumerTest extends \PHPUnit_Framework_TestCase
+class ConsumerTest extends \PHPUnit\Framework\TestCase
 {
     public function testProperties()
     {

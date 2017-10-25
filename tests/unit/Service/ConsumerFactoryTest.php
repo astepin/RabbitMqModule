@@ -14,7 +14,7 @@ use Zend\ServiceManager\ServiceManager;
  * Class ConsumerFactoryTest
  * @package RabbitMqModule\Service
  */
-class ConsumerFactoryTest extends \PHPUnit_Framework_TestCase
+class ConsumerFactoryTest extends \PHPUnit\Framework\TestCase
 {
     public function testCreateService()
     {

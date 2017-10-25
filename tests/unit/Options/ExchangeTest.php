@@ -6,7 +6,7 @@ namespace RabbitMqModule\Options;
  * Class ExchangeTest
  * @package RabbitMqModule\Options
  */
-class ExchangeTest extends \PHPUnit_Framework_TestCase
+class ExchangeTest extends \PHPUnit\Framework\TestCase
 {
     public function testOptions()
     {

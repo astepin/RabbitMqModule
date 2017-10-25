@@ -8,7 +8,7 @@ use Zend\ServiceManager\ServiceManager;
  * Class ConnectionFactoryTest
  * @package RabbitMqModule\Service
  */
-class ConnectionFactoryTest extends \PHPUnit_Framework_TestCase
+class ConnectionFactoryTest extends \PHPUnit\Framework\TestCase
 {
     public function testCreateService()
     {

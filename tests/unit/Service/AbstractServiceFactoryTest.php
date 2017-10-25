@@ -10,7 +10,7 @@ use Zend\ServiceManager\ServiceManager;
  * Class AbstractServiceFactoryTest
  * @package RabbitMqModule\Service
  */
-class AbstractServiceFactoryTest extends PHPUnit_Framework_TestCase
+class AbstractServiceFactoryTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var \Zend\ServiceManager\ServiceManager

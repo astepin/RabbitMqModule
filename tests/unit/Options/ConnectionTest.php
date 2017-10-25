@@ -8,7 +8,7 @@ use RabbitMqModule\Options\Connection as Options;
  * Class ConnectionTest
  * @package RabbitMqModule\Options
  */
-class ConnectionTest extends \PHPUnit_Framework_TestCase
+class ConnectionTest extends \PHPUnit\Framework\TestCase
 {
     public function testGetterAndSetter()
     {

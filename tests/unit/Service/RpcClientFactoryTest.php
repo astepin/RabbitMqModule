@@ -11,7 +11,7 @@ use Zend\ServiceManager\ServiceManager;
  * Class RpcClientFactoryTest
  * @package RabbitMqModule\Service
  */
-class RpcClientFactoryTest extends \PHPUnit_Framework_TestCase
+class RpcClientFactoryTest extends \PHPUnit\Framework\TestCase
 {
     public function testCreateService()
     {

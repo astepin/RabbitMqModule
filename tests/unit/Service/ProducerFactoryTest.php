@@ -10,7 +10,7 @@ use Zend\ServiceManager\ServiceManager;
  * Class ProducerFactoryTest
  * @package RabbitMqModule\Service
  */
-class ProducerFactoryTest extends \PHPUnit_Framework_TestCase
+class ProducerFactoryTest extends \PHPUnit\Framework\TestCase
 {
     public function testCreateService()
     {

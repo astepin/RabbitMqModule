@@ -6,7 +6,7 @@ namespace RabbitMqModule\Controller\Factory;
  * Class RpcServerControllerFactoryTest
  * @package RabbitMqModule\Controller\Factory
  */
-class RpcServerControllerFactoryTest extends \PHPUnit_Framework_TestCase
+class RpcServerControllerFactoryTest extends \PHPUnit\Framework\TestCase
 {
     public function testFactory()
     {

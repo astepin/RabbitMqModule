@@ -11,7 +11,7 @@ use Zend\Serializer\Serializer;
  * Class RpcClientTest
  * @package RabbitMqModule
  */
-class RpcClientTest extends \PHPUnit_Framework_TestCase
+class RpcClientTest extends \PHPUnit\Framework\TestCase
 {
     public function testAddRequestAndGetReplies()
     {
