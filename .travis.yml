@@ -31,5 +31,5 @@ after_script:
   - if [ $TRAVIS_PHP_VERSION != 'hhvm' ]; then php ocular.phar code-coverage:upload --format=php-clover ./clover.xml; fi
 
 install:
-  - if [ ! -f "$(php-config --extension-dir)/amqp.so" ]; then pecl install amqp-1.7.0; fi;
+  - if [ ! -f "$(php-config --extension-dir)/amqp.so" ]; then pecl install amqp-1.9.3; fi;
   - echo "extension = amqp.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
