@@ -200,6 +200,38 @@ class ConsumerTest extends \PHPUnit_Framework_TestCase
         $consumer->processMessage($message);
     }
 
+    public function testTestCallbackParameter()
+    {
+        $connection = static::getMockBuilder(AbstractConnection::class)
+            ->disableOriginalConstructor()
+            ->getMockForAbstractClass();
+        $channel    = static::getMockBuilder(AMQPChannel::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        /** @var AMQPMessage $message */
+        $message                = static::getMockBuilder(AMQPMessage::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $message->delivery_info = [
+            'channel'      => $channel,
+            'delivery_tag' => 'foo',
+        ];
+
+        /** @var ConsumerInterface|\PHPUnit_Framework_MockObject_MockObject|callable $callback */
+        $callback = static::getMockBuilder(ConsumerInterface::class)
+            ->disableOriginalConstructor()
+            ->setMethods(['execute'])
+            ->getMockForAbstractClass();
+
+        /* @var AbstractConnection $connection */
+        $consumer = new Consumer($connection, $channel);
+        $consumer->setCallback([$callback, 'execute']);
+
+        $callback->expects(self::once())->method('execute')->with($message, $consumer);
+
+        $consumer->processMessage($message);
+    }
+
     public function testPurge()
     {
         $connection = static::getMockBuilder(AbstractConnection::class)

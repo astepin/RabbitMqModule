@@ -29,7 +29,8 @@ interface ConsumerInterface
     /**
      * @param AMQPMessage $message
      *
+     * @param Consumer $consumer
      * @return mixed
      */
-    public function execute(AMQPMessage $message);
+    public function execute(AMQPMessage $message, Consumer $consumer);
 }
